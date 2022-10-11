@@ -280,7 +280,7 @@ services:
         command: -c 'mkdir -p /data/demo-bucket && /usr/bin/minio server /data'
         environment:
             - MINIO_ACCESS_KEY=smth
-            - MINIO_SECRET_KEY=Need8Chars
+            - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
             - MINIO_PROMETHEUS_AUTH_TYPE=public
         ports:
             - 9000:9000
@@ -334,5 +334,5 @@ services:
             - grafana_data:/var/lib/grafana
             - ./grafana/provisioning/:/etc/grafana/provisioning/
         env_file:
-            - ./grafana/config.monitoring
+            - ./grafana/config.monitoring.prod
         restart: always
